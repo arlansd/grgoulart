@@ -1,297 +1,687 @@
+
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Grupo Goulart Advocacia</title>
-  <meta name="description" content="Grupo Goulart Advocacia - Especialistas em Direito Bancário e Defesa do Consumidor com mais de 30 anos de experiência.">
-  <meta name="keywords" content="advocacia, direito bancário, defesa do consumidor, Rio de Janeiro">
-  <meta name="author" content="Grupo Goulart">
-  <meta property="og:title" content="Grupo Goulart Advocacia">
-  <meta property="og:description" content="Excelência em Defesa do Consumidor e Direito Bancário com mais de 30 anos de experiência.">
-  <meta property="og:image" content="https://seusite.com/images/logo.jpg">
-  <meta property="og:url" content="https://seusite.com">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Grupo Goulart - Defesa do Consumidor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Roboto', sans-serif;
+    :root {
+      --marrom-escuro: #3b2414;
+      --marrom-medio: #5a3e2b;
+      --marrom-claro: #a8926a;
+      --bege: #ede7df;
+      --dourado: #c9a13a;
+      --branco: #fff;
     }
 
     body {
-      background: #f5f5f5;
-      color: #333;
-      line-height: 1.6;
+      margin: 0;
+      font-family: 'Montserrat', Arial, sans-serif;
+      background:
+        url('https://www.transparenttextures.com/patterns/pw-maze-white.png') repeat,
+        linear-gradient(135deg, var(--marrom-escuro), var(--marrom-medio));
+      color: var(--bege);
+      min-height: 100vh;
     }
 
+    /* Menu */
     header {
-      background: rgba(212, 194, 168, 0.95);
-      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      background: var(--marrom-escuro);
+      z-index: 1000;
+      box-shadow: 0 1px 8px #0005;
+    }
+    .menu {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      position: relative;
+      padding: 16px 5vw;
+      max-width: 1100px;
+      margin: 0 auto;
     }
-
-    header h1 {
-      color: gold;
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--bege);
+      letter-spacing: 2px;
+      user-select: none;
     }
-
     nav {
+      display: flex;
+      gap: 28px;
+    }
+    nav a {
+      color: var(--bege);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: color 0.3s;
+      user-select: none;
+    }
+    nav a:hover {
+      color: var(--dourado);
+    }
+    .hamburger {
       display: none;
       flex-direction: column;
-      position: absolute;
-      top: 70px;
-      left: 0;
-      width: 100%;
-      background: rgba(212, 194, 168, 0.95);
-      padding: 1rem;
+      gap: 6px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .hamburger span {
+      width: 28px;
+      height: 3px;
+      background: var(--bege);
+      border-radius: 2px;
+      transition: 0.3s;
     }
 
-    nav a {
-      color: #333;
-      text-decoration: none;
-      padding: 0.5rem;
+    /* HERO */
+    .hero {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 420px;
+      padding: 0 5vw 32px 5vw;
+      background: linear-gradient(135deg, #3b2414ee 60%, #5a3e2bcc 100%);
+      color: var(--bege);
+      text-align: center;
+      overflow: hidden;
+      max-width: 1100px;
+      margin: 0 auto 40px auto;
+      border-radius: 14px;
+      box-shadow: 0 4px 12px #0005;
+    }
+    /* Deusa Têmis centralizada atrás do texto */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 260px;
+      height: 260px;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/2/2f/Justitia_Statue_Brandenburg_Gate_Berlin_2012-06-29_001.jpg') no-repeat center/contain;
+      opacity: 0.07;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: 1;
+      border-radius: 14px;
+      filter: grayscale(60%) brightness(120%);
+    }
+    /* Balança canto superior esquerdo */
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 100px;
+      height: 100px;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/3/3f/Scales_of_justice_icon.png') no-repeat center/contain;
+      opacity: 0.15;
+      pointer-events: none;
+      z-index: 1;
+    }
+    /* Martelo canto inferior direito */
+    .martelo {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      width: 80px;
+      height: 80px;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/3/3e/Gavel_icon.svg') no-repeat center/contain;
+      opacity: 0.15;
+      pointer-events: none;
+      z-index: 1;
+      filter: brightness(0.7);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+    }
+    .hero-title {
+      font-size: 2.4rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      letter-spacing: 2px;
+      user-select: none;
+      color: var(--bege);
+    }
+    .hero-subtitle {
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin-bottom: 10px;
+      color: var(--marrom-claro);
+      user-select: none;
+    }
+    .hero-desc {
+      font-size: 1.08rem;
+      margin-bottom: 24px;
+      color: var(--bege);
+      user-select: none;
+    }
+    .selos {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 18px;
+      user-select: none;
+    }
+    .selo {
+      background: var(--marrom-claro);
+      color: var(--marrom-escuro);
+      border-radius: 24px;
+      padding: 10px 22px;
+      font-weight: 700;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 2px 8px #0002;
+      user-select: none;
+    }
+    .selo i {
+      font-size: 1.3rem;
+      color: var(--dourado);
+    }
+    main {
+      padding: 0 5vw 48px 5vw;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--bege);
+      margin-bottom: 24px;
+      user-select: none;
+    }
+    /* Valores */
+    .valores {
+      background: var(--marrom-medio);
+      color: var(--bege);
+      border-radius: 14px;
+      padding: 32px 24px;
+      margin-bottom: 38px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+      font-size: 1.15rem;
+      box-shadow: 0 4px 12px #0004;
+      user-select: none;
+    }
+    /* Áreas de Atuação */
+    .areas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      justify-content: center;
+      margin-bottom: 48px;
+    }
+    .area {
+      background: var(--marrom-claro);
+      color: var(--marrom-escuro);
+      border-radius: 14px;
+      padding: 22px 18px 18px 18px;
+      flex: 1 1 260px;
+      min-width: 220px;
+      max-width: 280px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      text-align: center;
+      box-shadow: 0 2px 8px #0002;
+      user-select: none;
+      transition: transform 0.3s ease;
+    }
+    .area:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 6px 16px var(--dourado);
+    }
+    .area i {
+      font-size: 2.2rem;
+      color: var(--dourado);
+      margin-bottom: 8px;
+    }
+    .area strong {
+      font-size: 1.15rem;
+      margin-bottom: 6px;
+    }
+    .area .cta-area {
+      margin-top: 10px;
+      background: var(--dourado);
+      color: var(--marrom-escuro);
+      border: none;
+      border-radius: 8px;
+      padding: 10px 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      width: 100%;
+      user-select: none;
+    }
+    .area .cta-area:hover {
+      background: var(--marrom-escuro);
+      color: var(--bege);
+    }
+    /* Serviços */
+    .servicos {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 22px;
+      justify-content: center;
+      margin-bottom: 48px;
+    }
+    .servico {
+      background: var(--marrom-claro);
+      color: var(--marrom-escuro);
+      border-radius: 14px;
+      padding: 20px 16px 16px 16px;
+      flex: 1 1 200px;
+      min-width: 180px;
+      max-width: 220px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      text-align: center;
+      box-shadow: 0 2px 8px #0002;
+      user-select: none;
+      transition: transform 0.3s ease;
+    }
+    .servico:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 6px 16px var(--dourado);
+    }
+    .servico i {
+      font-size: 2rem;
+      color: var(--dourado);
+      margin-bottom: 8px;
+    }
+    .servico strong {
+      font-size: 1.07rem;
+      margin-bottom: 4px;
+    }
+    /* Advogada */
+    .advogada {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 48px;
+      text-align: center;
+      color: var(--bege);
+      user-select: none;
+    }
+    .advogada-info h3 {
+      margin: 0 0 8px 0;
+      font-size: 1.3rem;
+      color: var(--bege);
+    }
+    .advogada-info p {
+      margin: 0 0 8px 0;
+      color: var(--marrom-claro);
+    }
+    /* Depoimentos */
+    .depoimentos-lista {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 22px;
+      justify-content: center;
+      margin-bottom: 48px;
+    }
+    .depoimento {
+      background: var(--marrom-medio);
+      border-radius: 14px;
+      box-shadow: 0 2px 10px #0004;
+      padding: 22px 18px;
+      flex: 1 1 250px;
+      min-width: 220px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      text-align: center;
+      color: var(--bege);
+      user-select: none;
+      transition: background 0.3s ease;
+    }
+    .depoimento:hover {
+      background: var(--dourado);
+      color: var(--marrom-escuro);
+    }
+    .depoimento-img {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: url('https://randomuser.me/api/portraits/men/32.jpg') center/cover;
+      border: 2px solid var(--marrom-claro);
+      margin-bottom: 6px;
+      flex-shrink: 0;
+    }
+    .depoimento strong {
+      color: var(--marrom-claro);
       font-size: 1.1rem;
     }
-
-    nav a:hover {
-      color: gold;
-    }
-
-    .menu-btn {
-      font-size: 1.5rem;
-      background: none;
-      border: none;
-      color: #333;
-      cursor: pointer;
-    }
-
-    .hero {
-      /* Substitua por uma imagem local (ex.: images/justitia.jpg) para maior confiabilidade */
-      background: url('https://images.pexels.com/photos/5668884/pexels-photo-5668884.jpeg') center/cover no-repeat, #d4c2a8;
-      padding: 5rem 2rem;
-      text-align: center;
-    }
-
-    .hero h1 {
-      font-size: 3rem;
-      color: gold;
-      margin-bottom: 1rem;
-    }
-
-    .hero h2 {
-      font-size: 2rem;
-      color: gold;
-    }
-
-    .hero p {
-      margin-top: 1rem;
-      color: #f5f5f5;
-    }
-
-    section {
-      padding: 3rem 2rem;
-    }
-
-    .services, .testimonials, .contact, .about, .practice {
-      background: #d4c2a8;
-      border-radius: 10px;
-      margin-bottom: 2rem;
-      padding: 2rem;
-      color: #333;
-    }
-
-    h3 {
-      color: gold;
-      margin-bottom: 1rem;
-    }
-
-    .service, .testimonial {
-      margin-bottom: 1rem;
-    }
-
-    form input, form select, form textarea, form button {
-      display: block;
-      width: 100%;
-      margin-bottom: 1rem;
-      padding: 0.75rem;
-      border: none;
-      border-radius: 5px;
-    }
-
-    form input, form select, form textarea {
-      background: #fff;
-      color: #000;
-    }
-
-    form button {
-      background: gold;
-      color: #000;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    form button:hover {
-      background: #e6b800;
-    }
-
-    .icons {
+    /* Contato em duas colunas */
+    .contato-grid {
       display: flex;
-      gap: 1rem;
+      gap: 28px;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-start;
+      margin-bottom: 48px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .formulario-area {
+      background: var(--marrom-claro);
+      border-radius: 14px;
+      padding: 32px 24px;
+      box-shadow: 0 2px 14px #0002;
+      max-width: 400px;
+      width: 100%;
+      color: var(--marrom-escuro);
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    input,
+    select,
+    textarea {
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid var(--marrom-medio);
+      font-size: 1rem;
+      background: var(--bege);
+      color: var(--marrom-escuro);
+      resize: vertical;
+    }
+    button[type='submit'] {
+      background: var(--marrom-escuro);
+      color: var(--bege);
+      border: none;
+      padding: 12px 0;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      user-select: none;
+    }
+    button[type='submit']:hover {
+      background: var(--dourado);
+      color: var(--marrom-escuro);
+    }
+    .contato-info {
+      max-width: 350px;
+      background: var(--marrom-claro);
+      border-radius: 14px;
+      padding: 32px 24px;
+      box-shadow: 0 2px 14px #0002;
+      color: var(--marrom-escuro);
+      font-size: 1.1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      user-select: none;
+    }
+    .contato-info strong {
+      font-size: 1.1rem;
+      color: var(--marrom-escuro);
+    }
+    .contato-info a {
+      color: var(--marrom-escuro);
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
       align-items: center;
-      margin-top: 1rem;
+      gap: 6px;
+      transition: color 0.3s;
     }
-
-    .icon {
-      background: gold;
-      color: #333;
-      padding: 1rem;
-      border-radius: 50%;
-      font-weight: bold;
-      text-align: center;
+    .contato-info a:hover {
+      color: var(--dourado);
     }
-
-    footer {
-      background: #2f1c1b; /* Alternativa: #d4c2a8 para uniformidade */
-      color: #aaa;
-      text-align: center;
-      padding: 2rem;
+    @media (max-width: 900px) {
+      .areas,
+      .servicos,
+      .depoimentos-lista,
+      .contato-grid {
+        flex-direction: column;
+        gap: 18px;
+        align-items: center;
+      }
+      .area,
+      .servico,
+      .depoimento,
+      .formulario-area,
+      .contato-info {
+        min-width: 0;
+        max-width: 100%;
+      }
     }
-
-    a:focus, button:focus, input:focus, select:focus, textarea:focus {
-      outline: 2px solid gold;
-      outline-offset: 2px;
-    }
-
-    @media (min-width: 768px) {
+    @media (max-width: 768px) {
       nav {
-        display: flex;
-        flex-direction: row;
-        position: static;
-        background: none;
-        padding: 0;
-      }
-
-      nav a {
-        margin-left: 1rem;
-      }
-
-      .menu-btn {
         display: none;
+        position: absolute;
+        top: 60px;
+        right: 5vw;
+        background: var(--marrom-medio);
+        backdrop-filter: blur(8px);
+        border-radius: 10px;
+        flex-direction: column;
+        width: 180px;
+        padding: 12px 0;
+        box-shadow: 0 4px 12px #000a;
+        z-index: 1100;
+      }
+      nav.active {
+        display: flex;
+      }
+      .hamburger {
+        display: flex;
+      }
+    }
+    @media (max-width: 480px) {
+      .hero-title {
+        font-size: 1.5rem;
+      }
+      .hero-subtitle {
+        font-size: 1rem;
+      }
+      .section-title {
+        font-size: 1.2rem;
+      }
+      .formulario-area,
+      .contato-info {
+        padding: 20px 10px;
       }
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Grupo Goulart</h1>
-    <button class="menu-btn" aria-label="Abrir menu de navegação">☰</button>
-    <nav id="nav-menu" role="navigation">
-      <a href="#about">Sobre</a>
-      <a href="#practice">Áreas de Atuação</a>
-      <a href="#services">Serviços</a>
-      <a href="#testimonials">Depoimentos</a>
-      <a href="#contact">Contato</a>
-    </nav>
+    <div class="menu">
+      <span class="logo">Grupo Goulart</span>
+      <nav>
+        <a href="#valores">Nossos Valores</a>
+        <a href="#areas">Áreas de Atuação</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#advogada">Advogada</a>
+        <a href="#depoimentos">Depoimentos</a>
+        <a href="#contato">Contato</a>
+      </nav>
+      <div class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
   </header>
 
-  <section class="hero" aria-label="Imagem representando a justiça com estátua de Justitia">
-    <h1>Grupo Goulart</h1>
-    <h2>Excelência em Defesa do Consumidor e Direito Bancário</h2>
-    <p>Mais de 30 anos de experiência oferecendo soluções jurídicas eficazes.</p>
-  </section>
-
-  <section class="about" id="about">
-    <h3>Sobre Nós</h3>
-    <p>O Grupo Goulart se destaca como referência em direito bancário, com mais de 30 anos de mercado. Liderado pela Dra. <strong>Samantha Maguetta – OAB/SP 130639</strong>, o escritório possui mais de 900 processos ativos na defesa do consumidor bancário. Atuamos como um jurídico solucionador de problemas, com estratégias eficazes no âmbito judicial e extrajudicial.</p>
-  </section>
-
-  <section class="practice" id="practice">
-    <h3>Áreas de Atuação</h3>
-    <div class="service"><strong>Defesa do Consumidor:</strong> proteção contra abusos de empresas e bancos.</div>
-    <div class="service"><strong>Direito Bancário:</strong> ações de revisão, negociação e defesa contra cobranças indevidas.</div>
-    <div class="service"><strong>Consultoria Jurídica:</strong> orientação preventiva e estratégica personalizada.</div>
-  </section>
-
-  <section class="services" id="services">
-    <h3>Nossos Serviços</h3>
-    <div class="service"><strong>Busca e Apreensão:</strong> recuperação legal de bens por inadimplência.</div>
-    <div class="service"><strong>Execução de Títulos:</strong> cobrança judicial de dívidas com respaldo legal.</div>
-    <div class="service"><strong>Despejo:</strong> ações para retomada de imóveis.</div>
-    <div class="service"><strong>Limpa Nome:</strong> exclusão de negativação indevida.</div>
-  </section>
-
-  <section class="testimonials" id="testimonials">
-    <h3>Depoimentos</h3>
-    <div class="testimonial">“Fui muito bem atendido, o problema foi resolvido rapidamente.” – João S.</div>
-    <div class="testimonial">“Profissionais sérios e comprometidos. Recomendo!” – Maria T.</div>
-    <div class="testimonial">“Conseguiram resolver meu caso com agilidade e profissionalismo.” – Ricardo M.</div>
-  </section>
-
-  <section class="contact" id="contact">
-    <h3>Entre em Contato</h3>
-    <!-- Substitua 'your-form-id' pelo ID fornecido pelo Formspree após criar uma conta -->
-    <form action="https://formspree.io/f/your-form-id" method="POST">
-      <input type="text" name="name" placeholder="Nome completo" required>
-      <input type="email" name="email" placeholder="E-mail" required>
-      <input type="tel" name="phone" placeholder="Telefone">
-      <select name="service">
-        <option>Selecione o serviço</option>
-        <option>Busca e Apreensão</option>
-        <option>Execução de Títulos</option>
-        <option>Despejo</option>
-        <option>Limpa Nome</option>
-        <option>Outros</option>
-      </select>
-      <textarea name="message" placeholder="Mensagem"></textarea>
-      <button type="submit">Enviar</button>
-    </form>
-    <p>Nosso endereço: Estrada de Jacarepaguá, nº 7818 sala 201, Freguesia – RJ</p>
-    <a href="https://www.google.com/maps/place/Estrada+de+Jacarepaguá,+7818" target="_blank" style="color: gold;">Ver no Google Maps</a>
-    <div class="icons">
-      <div class="icon" aria-label="Mais de 30 anos de experiência">+30 anos</div>
-      <div class="icon" aria-label="Mais de 5.000 casos resolvidos">+5.000 casos</div>
+  <div class="hero">
+    <div class="hero-content">
+      <div class="hero-title">Grupo Goulart</div>
+      <div class="hero-subtitle">Advocacia Jurídica de Excelência</div>
+      <div class="hero-desc">
+        Defesa do consumidor, direito bancário e consultoria jurídica especializada no Rio de Janeiro.<br />
+        Tradição e modernidade a seu serviço.
+      </div>
+      <div class="selos">
+        <span class="selo"><i class="fas fa-award"></i> +30 anos de experiência</span>
+        <span class="selo"><i class="fas fa-gavel"></i> +5.000 casos resolvidos</span>
+      </div>
     </div>
-    <div style="margin-top:1rem;">
-      <!-- Substitua pelos links reais do Instagram e WhatsApp -->
-      <a href="https://www.instagram.com/grupogoulartadvocacia" target="_blank" style="color:gold; margin-right:1rem;">Instagram</a>
-      <a href="https://wa.me/5521987654321" target="_blank" style="color:gold;">WhatsApp</a>
-    </div>
-  </section>
+    <div class="martelo"></div>
+  </div>
 
-  <footer>
-    <p>© 2025 Grupo Goulart Advocacia. Todos os direitos reservados.</p>
-  </footer>
+  <main>
+    <section id="valores">
+      <div class="section-title">Nossos Valores</div>
+      <div class="valores">
+        O Grupo Goulart é referência em advocacia especializada, unindo tradição, ética e inovação. Nossa equipe altamente qualificada garante atendimento personalizado, soluções eficientes e total transparência em cada etapa do processo. Compromisso com resultados e excelência técnica é o que nos diferencia no mercado há mais de 30 anos.
+      </div>
+    </section>
+
+    <section id="areas">
+      <div class="section-title">Áreas de Atuação</div>
+      <div class="areas">
+        <div class="area">
+          <i class="fas fa-balance-scale"></i>
+          <strong>Direito Bancário</strong>
+          <span>Consultoria, defesa em contratos abusivos, revisão de dívidas e proteção ao consumidor bancário.</span>
+          <button class="cta-area" onclick="openWhatsApp('Direito Bancário')">Fale com um especialista</button>
+        </div>
+        <div class="area">
+          <i class="fas fa-user-shield"></i>
+          <strong>Defesa do Consumidor</strong>
+          <span>Atuação contra práticas abusivas, cobranças indevidas, contratos e garantias.</span>
+          <button class="cta-area" onclick="openWhatsApp('Defesa do Consumidor')">Fale com um especialista</button>
+        </div>
+        <div class="area">
+          <i class="fas fa-hand-holding-usd"></i>
+          <strong>Recuperação de Crédito</strong>
+          <span>Renegociação, limpa nome, busca e apreensão e execução de títulos.</span>
+          <button class="cta-area" onclick="openWhatsApp('Recuperação de Crédito')">Fale com um especialista</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="servicos">
+      <div class="section-title">Nossos Serviços</div>
+      <div class="servicos">
+        <div class="servico">
+          <i class="fas fa-car"></i>
+          <strong>Busca e Apreensão</strong>
+          <span>Defesa e acompanhamento em processos de busca e apreensão de veículos e bens.</span>
+        </div>
+        <div class="servico">
+          <i class="fas fa-file-invoice-dollar"></i>
+          <strong>Execução de Títulos</strong>
+          <span>Atuação em execuções judiciais e extrajudiciais para recuperação de crédito.</span>
+        </div>
+        <div class="servico">
+          <i class="fas fa-home"></i>
+          <strong>Despejo</strong>
+          <span>Assessoria em processos de despejo e regularização de imóveis.</span>
+        </div>
+        <div class="servico">
+          <i class="fas fa-user-check"></i>
+          <strong>Limpa Nome</strong>
+          <span>Estratégias para retirada de restrições e negativação indevida.</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="advogada">
+      <div class="section-title">Advogada</div>
+      <div class="advogada">
+        <div class="advogada-info">
+          <h3>Samantha Maguetta - OAB 130639/SP</h3>
+          <p>Mais de 900 processos ativos na defesa do consumidor bancário.</p>
+          <p>Atuação estratégica e solucionadora de problemas, com eficiência em âmbito extrajudicial e judicial.</p>
+          <p>Consultoria especializada em direito bancário, com 25 anos de experiência.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="depoimentos">
+      <div class="section-title">Depoimentos dos Clientes</div>
+      <div class="depoimentos-lista">
+        <div class="depoimento">
+          <div class="depoimento-img" style="background-image: url('https://randomuser.me/api/portraits/men/32.jpg');"></div>
+          <strong>João P.</strong>
+          <span>“O Grupo Goulart resolveu meu problema bancário rapidamente. Atendimento excelente e resultado acima do esperado!”</span>
+        </div>
+        <div class="depoimento">
+          <div class="depoimento-img" style="background-image: url('https://randomuser.me/api/portraits/women/65.jpg');"></div>
+          <strong>Maria S.</strong>
+          <span>“Equipe muito atenciosa e competente. Recomendo para quem busca um escritório de confiança.”</span>
+        </div>
+        <div class="depoimento">
+          <div class="depoimento-img" style="background-image: url('https://randomuser.me/api/portraits/men/41.jpg');"></div>
+          <strong>Eduardo L.</strong>
+          <span>“Fui muito bem orientado e consegui limpar meu nome. Profissionais realmente diferenciados.”</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="contato">
+      <div class="section-title">Entre em Contato</div>
+      <div class="contato-grid">
+        <div class="formulario-area">
+          <form>
+            <input type="text" name="nome" placeholder="Seu nome" required />
+            <input type="email" name="email" placeholder="Seu e-mail" required />
+            <input type="tel" name="telefone" placeholder="Telefone/WhatsApp" required />
+            <select name="servico" required>
+              <option value="">Selecione o serviço</option>
+              <option value="Busca e Apreensão">Busca e Apreensão</option>
+              <option value="Execução de Títulos">Execução de Títulos</option>
+              <option value="Despejo">Despejo</option>
+              <option value="Limpa Nome">Limpa Nome</option>
+              <option value="Outros">Outros</option>
+            </select>
+            <textarea name="mensagem" rows="3" placeholder="Mensagem"></textarea>
+            <button type="submit">Enviar</button>
+          </form>
+        </div>
+        <div class="contato-info">
+          <div><strong>Endereço:</strong><br />Estrada de Jacarepaguá, 7818 sala 201, Freguesia - Rio de Janeiro</div>
+          <div><strong>Telefone:</strong><br />(21) 99999-9999</div>
+          <div><strong>E-mail:</strong><br />contato@grupogoulart.com.br</div>
+          <div>
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=Estrada+de+Jacarepaguá,+7818,+sala+201,+Freguesia,+Rio+de+Janeiro"
+              target="_blank"
+              ><i class="fas fa-map-marker-alt"></i> Ver no Google Maps</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <script>
-    // Menu Hamburger
-    const menuBtn = document.querySelector('.menu-btn');
-    const navMenu = document.querySelector('#nav-menu');
-    menuBtn.addEventListener('click', () => {
-      navMenu.style.display = navMenu.style.display === 'block' ? 'none' : 'block';
-    });
-
-    // Fechar menu ao clicar em um link (útil em dispositivos móveis)
-    const navLinks = document.querySelectorAll('#nav-menu a');
-    navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        navMenu.style.display = 'none';
-      });
-    });
-
-    // Validação do formulário
-    const form = document.querySelector('form');
-    form.addEventListener('submit', (e) => {
-      const email = form.querySelector('input[type="email"]').value;
-      if (!email.includes('@')) {
-        e.preventDefault();
-        alert('Por favor, insira um e-mail válido.');
-      }
-    });
+    function toggleMenu() {
+      const nav = document.querySelector('nav');
+      nav.classList.toggle('active');
+    }
+    function openWhatsApp(area) {
+      const msg = encodeURIComponent(`Olá, gostaria de atendimento em ${area} pelo Grupo Goulart.`);
+      window.open(`https://wa.me/5521999999999?text=${msg}`, '_blank');
+    }
   </script>
 </body>
 </html>
