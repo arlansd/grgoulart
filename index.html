@@ -1,43 +1,4 @@
-<script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-        </script><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
@@ -109,7 +70,7 @@
     }
 
     .hero {
-      background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Justitia_%28Law%29.jpg/1280px-Justitia_%28Law%29.jpg') center/cover no-repeat;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Justitia_%28Law%29.jpg/1280px-Justitia_%28Law%29.jpg') center/cover no-repeat, #4b312e;
       padding: 5rem 2rem;
       text-align: center;
     }
@@ -227,7 +188,7 @@
   <header>
     <h1>Grupo Goulart</h1>
     <button class="menu-btn" aria-label="Abrir menu de navegação">☰</button>
-    <nav id="nav-menu">
+    <nav id="nav-menu" role="navigation">
       <a href="#about">Sobre</a>
       <a href="#practice">Áreas de Atuação</a>
       <a href="#services">Serviços</a>
@@ -271,6 +232,7 @@
 
   <section class="contact" id="contact">
     <h3>Entre em Contato</h3>
+    <!-- Substitua 'your-form-id' pelo ID fornecido pelo Formspree após criar uma conta -->
     <form action="https://formspree.io/f/your-form-id" method="POST">
       <input type="text" name="name" placeholder="Nome completo" required>
       <input type="email" name="email" placeholder="E-mail" required>
@@ -293,6 +255,7 @@
       <div class="icon" aria-label="Mais de 5.000 casos resolvidos">+5.000 casos</div>
     </div>
     <div style="margin-top:1rem;">
+      <!-- Substitua pelos links reais do Instagram e WhatsApp -->
       <a href="https://www.instagram.com/grupogoulartadvocacia" target="_blank" style="color:gold; margin-right:1rem;">Instagram</a>
       <a href="https://wa.me/5521987654321" target="_blank" style="color:gold;">WhatsApp</a>
     </div>
@@ -303,12 +266,22 @@
   </footer>
 
   <script>
+    // Menu Hamburger
     const menuBtn = document.querySelector('.menu-btn');
     const navMenu = document.querySelector('#nav-menu');
     menuBtn.addEventListener('click', () => {
       navMenu.style.display = navMenu.style.display === 'block' ? 'none' : 'block';
     });
 
+    // Fechar menu ao clicar em um link (útil em dispositivos móveis)
+    const navLinks = document.querySelectorAll('#nav-menu a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.style.display = 'none';
+      });
+    });
+
+    // Validação do formulário
     const form = document.querySelector('form');
     form.addEventListener('submit', (e) => {
       const email = form.querySelector('input[type="email"]').value;
